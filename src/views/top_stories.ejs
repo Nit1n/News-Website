@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Stories</title>
+    <link rel="stylesheet" href="/css/topstories.css">
+    <script src="/js/script.js" defer></script>
+</head>
+<body>
+    
+    <header class="top">
+        <h1>top Stories</h1>
+        <form method="POST" action="/topstories"> 
+            <select name="search" ,  id="search" value = "<%= tag %>" >
+                <option value="home">Home</option>
+                <option value="health">Health</option>
+                <option value="arts">Arts</option>
+                <option value="automobiles">Automobiles</option>
+                <option value="books">Books</option>
+                <option value="business">Business</option>
+                <option value="fashion">Fashion</option>
+                <option value="food">Food</option>
+                <option value="insider">Insider</option>
+                <option value="magazine">Magazine</option>
+                <option value="movies">Movies</option>
+                <option value="politics">Politics</option>
+                <option value="science">Science</option>
+                <option value="sports">Sports</option>
+                <option value="technology">Technology</option>
+                <option value="travel">Travel</option>
+                <option value="realestate">Realestate</option>
+                <option value="travel">Travel</option>
+            </select>
+            <input type="submit" id = "submit">
+        </form>
+    </header>
+    <div class="navbar">
+        <%-include('partials/nav') %>
+    </div>
+    <div class="news">
+        <% articles['results'].forEach(function(article){ %>
+            <div class="article">
+                <header class = "title">
+                    <h3><%= article['title'] %></h3>
+                </header>
+                <div class="content">
+                    <% if(article['multimedia'] !== null){ %>
+                        <div class = "multimedia">
+                            <img src="<%= article['multimedia'][0]['url']%>">  
+                        </div>
+                    <%} %>
+                    <div class = "abstract">
+                        <p><%= article['abstract']%></p>
+                        <p>To read Full article : <a href="<%= article['url']%>" , target="_blank">Click Here</a></p>
+                    </div>
+                    <div class = 'footer'>
+                        <p class="tags"><strong><%=article['section']%></strong></p>
+                        <% if(article['subsection'] != ''){%>
+                            <p class="tags"><strong><%=article['subsection']%></strong></p>
+                        <%} %>
+                        <p class="tags">Date : <%=new Date(article['published_date']).getDate()%>/
+                            <%=new Date(article['published_date']).getMonth()+1%>/ 
+                            <%=new Date(article['published_date']).getFullYear()%></p>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Top News Articles</h1>
+    </header>
+    <div class="navbar">
+        <%-include('partials/nav') %>
+    </div>
+    <div class="container">            
+            <% articles['results'].forEach(function(article){ %>
+                <div class="article">
+                    <div class="title">
+                        <h3><%=article.title %> </h3>
+                    </div>
+                    <%if(article['multimedia'] !== null){%>
+                        <div class="multimedia">
+                        <img src="<%= article['multimedia'][2]['url'] %>" alt="You can see image here <%= article['multimedia'][0]['url'] %>">    
+                        </div>
+                    <%} %> 
+                    <div class ="abstract">
+                        <p><%= article['abstract'] %></p>
+                        <p>To read Full article : <a href="<%= article['url']%>" , target="_blank">Click Here</a></p>
+                    </div>
+                    <div class = 'footer'>
+                        <p class="tags"><strong><%=article['section']%></strong></p>
+                        <% if(article['subsection'] != ''){%>
+                            <p class="tags"><strong><%=article['subsection']%></strong></p>
+                        <%} %>
+                        <p class="tags">Date : <%=new Date(article['published_date']).getDate()%>/
+                            <%=new Date(article['published_date']).getMonth()+1%>/ 
+                            <%=new Date(article['published_date']).getFullYear()%></p>
+                    </div>
+                </div>        
+            <% }) %>
+    </div>
+</body>
+</html>
