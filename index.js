@@ -12,7 +12,7 @@ app.set('views' , './src/views') ;
 app.set('view engine' , 'ejs') ; 
 
 //Routes 
-const port = process.env.PORT || 3000 ; 
+const port = process.env.PORT || 8000 ; 
 
 const newsRouter =require('./src/routes/news');
 const topStoriesRouter = require('./src/routes/top_Stories')  ; 
