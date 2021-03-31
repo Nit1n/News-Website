@@ -12,8 +12,10 @@ app.set('views' , './src/views') ;
 app.set('view engine' , 'ejs') ; 
 
 //Routes 
+const port = process.env.PORT || 3000 ; 
+
 const newsRouter =require('./src/routes/news');
 const topStoriesRouter = require('./src/routes/top_Stories')  ; 
 app.use('/' , newsRouter) ; 
 app.use('/topstories' , topStoriesRouter ) ; 
-app.listen(8000, ()=>{console.log('Listening on port 8000')}) ; 
+app.listen(port, ()=>{console.log('Listening on port' + port)}) ; 
