@@ -11,7 +11,6 @@ app.use('/js' , express.static(__dirname + '/public/js')) ;
 app.set('views' , './src/views') ; 
 app.set('view engine' , 'ejs') ; 
 
-
 //Routes 
 const port = process.env.PORT || 8000 ; 
 
